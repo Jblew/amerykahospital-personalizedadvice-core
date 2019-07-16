@@ -12,8 +12,8 @@ install:
 
 script:
     - npm run build
-    - npm run test
-    - npm run verify
+#    - npm run test
+#    - npm run verify
 
 deploy:
     - provider: script
