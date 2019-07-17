@@ -1,4 +1,4 @@
-# amerykahospital-personalizedadvices-core
+# amerykahospital-personalizedadvice-core
 
 Core library for AmerykaHospital Personalized patient advice system
 
