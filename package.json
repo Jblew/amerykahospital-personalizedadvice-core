@@ -1,5 +1,5 @@
 {
-    "name": "amerykahospital-personalizedadvices-core",
+    "name": "amerykahospital-personalizedadvice-core",
     "description": "Core library for AmerykaHospital Personalized patient advice system",
     "version": "0.0.0-development",
     "main": "dist/index.js",
@@ -53,7 +53,7 @@
     "release": {},
     "repository": {
         "type": "git",
-        "url": "https://github.com/Jblew/amerykahospital-personalizedadvices-core"
+        "url": "https://github.com/Jblew/amerykahospital-personalizedadvice-core"
     },
     "keywords": [
         "healthcare"
@@ -64,6 +64,6 @@
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/jblew/amerykahospital-personalizedadvices-core/issues"
+        "url": "https://github.com/jblew/amerykahospital-personalizedadvice-core/issues"
     }
 }
