@@ -6,3 +6,7 @@ Core library for AmerykaHospital Personalized patient advice system
 > advice system of Voievodship Rehabilitation Hospital for Children in Ameryka, Poland
 >
 > It is probably useless outside of the scope of this system.
+
+---
+
+Made with ❤️ by [Jędrzej Lewandowski](https://jedrzej.lewandowski.doctor/).
