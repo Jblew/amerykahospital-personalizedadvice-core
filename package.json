@@ -62,7 +62,7 @@
     "contributors": [
         "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)"
     ],
-    "license": "MIT",
+    "license": "GPL-3.0",
     "bugs": {
         "url": "https://github.com/jblew/amerykahospital-personalizedadvice-core/issues"
     }
