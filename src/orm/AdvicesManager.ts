@@ -9,7 +9,18 @@ import { Advice } from "../model/Advice";
 export class AdvicesManager {
     public static async addAdvice(advice: Advice, firestoreOrNull?: firebase.firestore.Firestore) {
         const firestore: firebase.firestore.Firestore = firestoreOrNull || firebase.firestore();
-        await firestore.collection(FirestoreCollections.ADVICES_COLLECTION_KEY).add(advice);
+        await firestore
+            .collection(FirestoreCollections.ADVICES_COLLECTION_KEY)
+            .doc(advice.id)
+            .set(advice);
+    }
+
+    public static async adviceExists(id: string, firestoreOrNull?: firebase.firestore.Firestore): Promise<boolean> {
+        const firestore: firebase.firestore.Firestore = firestoreOrNull || firebase.firestore();
+        return (await firestore
+            .collection(FirestoreCollections.ADVICES_COLLECTION_KEY)
+            .doc(id)
+            .get()).exists;
     }
 
     public static async fetchAdvices(filter: AdvicesManager.FetchFilter): Promise<Advice[]> {
