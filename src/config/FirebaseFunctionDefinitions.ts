@@ -1,4 +1,4 @@
-import { Advice } from "./model/Advice";
+import { Advice } from "../model/Advice";
 
 export namespace FirebaseFunctionDefinitions {
     export namespace AddAdvice {

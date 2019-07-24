@@ -3,7 +3,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-import { FirestoreCollections } from "../FirestoreCollections";
+import { FirestoreCollections } from "../config/FirestoreCollections";
 import { Advice } from "../model/Advice";
 
 export class AdvicesManager {
