@@ -6,6 +6,6 @@ export const FIREBASE_CONFIG = {
     storageBucket: "amerykahospital-advice-68385.appspot.com",
     messagingSenderId: "1065789277110",
     appId: "1:1065789277110:web:92e5cb6d64f97d07",
-    androidPackageName: "pl.com.ameryka.aplikacja.androidclient",
+    androidPackageName: "pl.com.ameryka.aplikacja",
     dynamicLinksBaseUrl: "https://aplikacja.ameryka.com.pl/links/",
 };
