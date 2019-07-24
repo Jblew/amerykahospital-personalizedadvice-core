@@ -8,4 +8,5 @@ export const FIREBASE_CONFIG = {
     appId: "1:1065789277110:web:92e5cb6d64f97d07",
     androidPackageName: "pl.com.ameryka.aplikacja",
     dynamicLinksBaseUrl: "https://aplikacja.ameryka.com.pl/links/",
+    websiteBaseUrl: "https://aplikacja.ameryka.com.pl/",
 };
