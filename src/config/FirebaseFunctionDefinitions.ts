@@ -8,6 +8,7 @@ export namespace FirebaseFunctionDefinitions {
 
         export interface Result {
             log: string;
+            adviceId: string;
         }
 
         export const NAME = "add_advice";
