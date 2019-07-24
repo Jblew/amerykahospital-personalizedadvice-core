@@ -7,4 +7,5 @@ export const FIREBASE_CONFIG = {
     messagingSenderId: "1065789277110",
     appId: "1:1065789277110:web:92e5cb6d64f97d07",
     androidPackageName: "pl.com.ameryka.aplikacja.androidclient",
+    dynamicLinksBaseUrl: "https://aplikacja.ameryka.com.pl/links/",
 };
