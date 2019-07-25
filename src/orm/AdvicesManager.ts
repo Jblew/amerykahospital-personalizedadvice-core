@@ -3,7 +3,6 @@ import "firebase/firestore";
 
 import { FirestoreCollections } from "../config/FirestoreCollections";
 import { Advice } from "../model/Advice";
-import { PendingAdvice } from "../model/PendingAdvice";
 
 export class AdvicesManager {
     public static async addAdvice(advice: Advice, firestoreOrNull?: firebase.firestore.Firestore) {
