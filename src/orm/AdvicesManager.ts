@@ -31,22 +31,27 @@ export class AdvicesManager {
     public static async fetchAdvices(filter: AdvicesManager.FetchFilter): Promise<Advice[]> {
         let query: firebase.firestore.Query = firebase
             .firestore()
-            .collection(FirestoreCollections.ADVICES_COLLECTION_KEY);
+            .collection(FirestoreCollections.ADVICES_COLLECTION_KEY)
+            .orderBy(Advice.keys.timestamp, "desc");
 
         if (filter.medicalprofessionalName) {
             query = AdvicesManager.createStartsWithQueryClause(
                 query,
-                "medicalprofessionalName",
+                Advice.keys.medicalprofessionalName,
                 filter.medicalprofessionalName,
             );
         }
 
         if (filter.patientName) {
-            query = AdvicesManager.createStartsWithQueryClause(query, "patientName", filter.patientName);
+            query = AdvicesManager.createStartsWithQueryClause(query, Advice.keys.patientName, filter.patientName);
         }
 
         if (filter.parentPhoneNumber) {
-            query = AdvicesManager.createStartsWithQueryClause(query, "parentPhoneNumber", filter.parentPhoneNumber);
+            query = AdvicesManager.createStartsWithQueryClause(
+                query,
+                Advice.keys.parentPhoneNumber,
+                filter.parentPhoneNumber,
+            );
         }
 
         query = query.limit(20);
