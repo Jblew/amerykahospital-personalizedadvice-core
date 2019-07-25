@@ -13,4 +13,16 @@ export namespace FirebaseFunctionDefinitions {
 
         export const NAME = "add_advice";
     }
+
+    export namespace SendSMS {
+        export type Function = (data: Input, context: any) => Promise<Result>;
+
+        export type Input = Advice;
+
+        export interface Result {
+            messageSent: string;
+        }
+
+        export const NAME = "send_sms";
+    }
 }
