@@ -1,17 +1,20 @@
-// tslint:disable no-console
-
 import firebase from "firebase/app";
 import "firebase/firestore";
 
 import { FirestoreCollections } from "../config/FirestoreCollections";
 import { Advice } from "../model/Advice";
+import { PendingAdvice } from "../model/PendingAdvice";
 
 export class AdvicesManager {
-    public static async addAdvice(advice: Advice, firestoreOrNull?: firebase.firestore.Firestore) {
+    public static async addAdvice(
+        adviceId: string,
+        advice: PendingAdvice,
+        firestoreOrNull?: firebase.firestore.Firestore,
+    ) {
         const firestore: firebase.firestore.Firestore = firestoreOrNull || firebase.firestore();
         await firestore
             .collection(FirestoreCollections.ADVICES_COLLECTION_KEY)
-            .doc(advice.id)
+            .doc(adviceId)
             .set(advice);
     }
 
@@ -27,8 +30,6 @@ export class AdvicesManager {
         let query: firebase.firestore.Query = firebase
             .firestore()
             .collection(FirestoreCollections.ADVICES_COLLECTION_KEY);
-
-        console.log("Query with filter", filter);
 
         if (filter.medicalprofessionalName) {
             query = AdvicesManager.createStartsWithQueryClause(
@@ -53,7 +54,6 @@ export class AdvicesManager {
         const advices: Advice[] = [];
 
         querySnapshot.forEach(document => advices.push((document.data() as any) as Advice));
-        console.log(advices);
 
         return advices as Advice[];
     }
