@@ -3,6 +3,7 @@ import { PendingAdvice } from "../model/PendingAdvice";
 export namespace FirebaseFunctionDefinitions {
     export namespace AddAdvice {
         export type Function = (data: Input, context: any) => Promise<Result>;
+        export type Adapter = (data: Input) => Promise<Result>;
 
         export type Input = PendingAdvice;
 
@@ -16,6 +17,7 @@ export namespace FirebaseFunctionDefinitions {
 
     export namespace SendSMS {
         export type Function = (data: Input, context: any) => Promise<Result>;
+        export type Adapter = (data: Input) => Promise<Result>;
 
         export interface AdviceId {
             adviceId: string;
