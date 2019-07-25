@@ -7,7 +7,7 @@ export interface Advice {
     parentPhoneNumber: string;
     uid?: string;
     advice: string;
-    dateISO: string;
+    timestamp: number;
 }
 
 export namespace Advice {
@@ -19,6 +19,6 @@ export namespace Advice {
         ow(o.parentPhoneNumber, "Advice.parentPhoneNumber", ow.string.numeric.length(9));
         ow(o.uid, "Advice.uid", ow.any(ow.undefined, ow.string.nonEmpty));
         ow(o.advice, "Advice.advice", ow.string.nonEmpty);
-        ow(o.dateISO, "Advice.dateISO", ow.string);
+        ow(o.timestamp, "Advice.timestamp", ow.number.finite.integer.greaterThan(0));
     }
 }
