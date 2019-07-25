@@ -4,7 +4,7 @@ export namespace FirebaseFunctionDefinitions {
     export namespace AddAdvice {
         export type Function = (data: Input, context: any) => Promise<Result>;
 
-        export type Input = Advice;
+        export type Input = PendingAdvice;
 
         export interface Result {
             log: string;
@@ -17,10 +17,12 @@ export namespace FirebaseFunctionDefinitions {
     export namespace SendSMS {
         export type Function = (data: Input, context: any) => Promise<Result>;
 
-        export type Input = Advice;
+        export type AdviceId = string;
+        export type Input = AdviceId;
 
         export interface Result {
-            messageSent: string;
+            message: string;
+            smsResult: string;
         }
 
         export const NAME = "send_sms";
