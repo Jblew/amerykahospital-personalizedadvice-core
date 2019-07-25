@@ -18,4 +18,12 @@ export namespace Advice {
         ow(o.uid, "Advice.uid", ow.any(ow.undefined, ow.string.nonEmpty));
         ow(o.timestamp, "Advice.timestamp", ow.number.finite.integer.greaterThan(0));
     }
+
+    export type KeysType = PendingAdvice.KeysType & { [x in keyof Advice]: string };
+    export const keys: KeysType = {
+        ...PendingAdvice.keys,
+        id: "id",
+        uid: "uid",
+        timestamp: "timestamp",
+    };
 }

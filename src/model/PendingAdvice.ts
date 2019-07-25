@@ -15,4 +15,12 @@ export namespace PendingAdvice {
         ow(o.parentPhoneNumber, `${prefix}.parentPhoneNumber`, ow.string.numeric.length(9));
         ow(o.advice, `${prefix}.advice`, ow.string.nonEmpty);
     }
+
+    export type KeysType = { [x in keyof PendingAdvice]: string };
+    export const keys: KeysType = {
+        patientName: "patientName",
+        medicalprofessionalName: "medicalprofessionalName",
+        parentPhoneNumber: "parentPhoneNumber",
+        advice: "advice",
+    };
 }
