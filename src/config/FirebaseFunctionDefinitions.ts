@@ -44,6 +44,7 @@ export namespace FirebaseFunctionDefinitions {
 
         export interface Result {
             advice: Advice;
+            log: string;
         }
 
         export const NAME = "import_advice_to_user";
