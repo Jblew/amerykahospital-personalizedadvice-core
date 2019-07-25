@@ -17,7 +17,9 @@ export namespace FirebaseFunctionDefinitions {
     export namespace SendSMS {
         export type Function = (data: Input, context: any) => Promise<Result>;
 
-        export type AdviceId = string;
+        export interface AdviceId {
+            adviceId: string;
+        }
         export type Input = AdviceId;
 
         export interface Result {
