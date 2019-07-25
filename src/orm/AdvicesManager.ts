@@ -6,15 +6,11 @@ import { Advice } from "../model/Advice";
 import { PendingAdvice } from "../model/PendingAdvice";
 
 export class AdvicesManager {
-    public static async addAdvice(
-        adviceId: string,
-        advice: PendingAdvice,
-        firestoreOrNull?: firebase.firestore.Firestore,
-    ) {
+    public static async addAdvice(advice: Advice, firestoreOrNull?: firebase.firestore.Firestore) {
         const firestore: firebase.firestore.Firestore = firestoreOrNull || firebase.firestore();
         await firestore
             .collection(FirestoreCollections.ADVICES_COLLECTION_KEY)
-            .doc(adviceId)
+            .doc(advice.id)
             .set(advice);
     }
 
