@@ -1,17 +1,19 @@
 import { FirestoreRolesConfiguration } from "firestore-roles";
 
+import { RoleKey } from "./RoleKey";
+
 const roles: FirestoreRolesConfiguration = {
     accountsCollection: "accounts",
     roleCollectionPrefix: "role_",
     roleRequestsCollectionPrefix: "rolereq_",
     roles: {
-        admin: {
-            manages: ["provisioner", "medicalprofessional"],
+        [RoleKey.admin]: {
+            manages: [RoleKey.provisioner, RoleKey.medicalprofessional],
         },
-        provisioner: {
-            manages: ["medicalprofessional"],
+        [RoleKey.provisioner]: {
+            manages: [RoleKey.medicalprofessional],
         },
-        medicalprofessional: {
+        [RoleKey.medicalprofessional]: {
             manages: [],
         },
     },

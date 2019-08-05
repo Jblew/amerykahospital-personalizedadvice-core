@@ -31,8 +31,7 @@ export class AdvicesManager {
     public static async fetchAdvices(filter: AdvicesManager.FetchFilter): Promise<Advice[]> {
         let query: firebase.firestore.Query = firebase
             .firestore()
-            .collection(FirestoreCollections.ADVICES_COLLECTION_KEY)
-            .orderBy(Advice.keys.timestamp, "desc");
+            .collection(FirestoreCollections.ADVICES_COLLECTION_KEY);
 
         if (filter.medicalprofessionalName) {
             query = AdvicesManager.createStartsWithQueryClause(
@@ -53,6 +52,8 @@ export class AdvicesManager {
                 filter.parentPhoneNumber,
             );
         }
+
+        query = query.orderBy(Advice.keys.timestamp, "desc");
 
         query = query.limit(20);
 
@@ -83,7 +84,8 @@ export class AdvicesManager {
 
         const startcode = startingStr;
         const endcode = strFrontCode + String.fromCharCode(strEndCode.charCodeAt(0) + 1);
-        return queryObj.where(fieldName, ">=", startcode).where(fieldName, "<", endcode);
+        return queryObj.where(fieldName, ">=", startcode).where(fieldName, "<", endcode)
+        .orderBy(fieldName, "desc");
     }
 }
 
