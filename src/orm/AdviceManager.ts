@@ -29,7 +29,7 @@ export class AdviceManager {
         return (await this.getAdviceDoc(id).get()).exists;
     }
 
-    public async fetchAdvices(filter: AdvicesManager.FetchFilter): Promise<Advice[]> {
+    public async fetchAdvices(filter: AdviceManager.FetchFilter): Promise<Advice[]> {
         let query: firebase.firestore.Query = firebase
             .firestore()
             .collection(FirestoreCollections.ADVICES_COLLECTION_KEY);
