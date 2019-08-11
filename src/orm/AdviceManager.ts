@@ -5,7 +5,7 @@ import { FirestoreCollections } from "../config/FirestoreCollections";
 import { Advice } from "../model/Advice";
 import { FirestoreEquivalent } from "../types/FirestoreEquivalent";
 
-export class AdvicesManager {
+export class AdviceManager {
     private firestore: FirestoreEquivalent;
 
     public constructor(firestore: FirestoreEquivalent) {
@@ -85,7 +85,7 @@ export class AdvicesManager {
     }
 }
 
-export namespace AdvicesManager {
+export namespace AdviceManager {
     export interface FetchFilter {
         medicalprofessionalName?: string;
         patientName?: string;

@@ -4,6 +4,6 @@ export { FirebaseFunctionDefinitions } from "./config/FirebaseFunctionDefinition
 export { FIREBASE_CONFIG } from "./config/firebase.config";
 export { Advice } from "./model/Advice";
 export { PendingAdvice } from "./model/PendingAdvice";
-export { AdvicesManager } from "./orm/AdvicesManager";
+export { AdviceManager } from "./orm/AdviceManager";
 export { default as RolesConfig } from "./roles/roles.config";
 export { RoleKey } from "./roles/RoleKey";
