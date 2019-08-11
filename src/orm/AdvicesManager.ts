@@ -3,38 +3,39 @@ import "firebase/firestore";
 
 import { FirestoreCollections } from "../config/FirestoreCollections";
 import { Advice } from "../model/Advice";
+import { FirestoreEquivalent } from "../types/FirestoreEquivalent";
 
 export class AdvicesManager {
-    public static async addAdvice(advice: Advice, firestoreOrNull?: firebase.firestore.Firestore) {
-        const firestore: firebase.firestore.Firestore = firestoreOrNull || firebase.firestore();
-        Advice.validate(advice);
-        await AdvicesManager.getAdviceDoc(advice.id, firestore).set(advice);
+    private firestore: FirestoreEquivalent;
+
+    public constructor(firestore: FirestoreEquivalent) {
+        this.firestore = firestore;
     }
 
-    public static async getAdvice(
-        id: string,
-        firestoreOrNull?: firebase.firestore.Firestore,
-    ): Promise<Advice | undefined> {
-        const firestore: firebase.firestore.Firestore = firestoreOrNull || firebase.firestore();
-        const doc = await AdvicesManager.getAdviceDoc(id, firestore).get();
+    public async addAdvice(advice: Advice) {
+        Advice.validate(advice);
+        await this.getAdviceDoc(advice.id).set(advice);
+    }
+
+    public async getAdvice(id: string): Promise<Advice | undefined> {
+        const doc = await this.getAdviceDoc(id).get();
         if (!doc.exists) return undefined;
         const advice = doc.data() as Advice;
         Advice.validate(advice);
         return advice;
     }
 
-    public static async adviceExists(id: string, firestoreOrNull?: firebase.firestore.Firestore): Promise<boolean> {
-        const firestore: firebase.firestore.Firestore = firestoreOrNull || firebase.firestore();
-        return (await AdvicesManager.getAdviceDoc(id, firestore).get()).exists;
+    public async adviceExists(id: string): Promise<boolean> {
+        return (await this.getAdviceDoc(id).get()).exists;
     }
 
-    public static async fetchAdvices(filter: AdvicesManager.FetchFilter): Promise<Advice[]> {
+    public async fetchAdvices(filter: AdvicesManager.FetchFilter): Promise<Advice[]> {
         let query: firebase.firestore.Query = firebase
             .firestore()
             .collection(FirestoreCollections.ADVICES_COLLECTION_KEY);
 
         if (filter.medicalprofessionalName) {
-            query = AdvicesManager.createStartsWithQueryClause(
+            query = this.createStartsWithQueryClause(
                 query,
                 Advice.keys.medicalprofessionalName,
                 filter.medicalprofessionalName,
@@ -42,15 +43,11 @@ export class AdvicesManager {
         }
 
         if (filter.patientName) {
-            query = AdvicesManager.createStartsWithQueryClause(query, Advice.keys.patientName, filter.patientName);
+            query = this.createStartsWithQueryClause(query, Advice.keys.patientName, filter.patientName);
         }
 
         if (filter.parentPhoneNumber) {
-            query = AdvicesManager.createStartsWithQueryClause(
-                query,
-                Advice.keys.parentPhoneNumber,
-                filter.parentPhoneNumber,
-            );
+            query = this.createStartsWithQueryClause(query, Advice.keys.parentPhoneNumber, filter.parentPhoneNumber);
         }
 
         query = query.orderBy(Advice.keys.timestamp, "desc");
@@ -66,14 +63,11 @@ export class AdvicesManager {
         return advices as Advice[];
     }
 
-    private static getAdviceDoc(
-        adviceId: string,
-        firestore: firebase.firestore.Firestore,
-    ): firebase.firestore.DocumentReference {
-        return firestore.collection(FirestoreCollections.ADVICES_COLLECTION_KEY).doc(adviceId);
+    private getAdviceDoc(adviceId: string): FirestoreEquivalent.DocumentReferenceEquivalent {
+        return this.firestore.collection(FirestoreCollections.ADVICES_COLLECTION_KEY).doc(adviceId);
     }
 
-    private static createStartsWithQueryClause(
+    private createStartsWithQueryClause(
         queryObj: firebase.firestore.CollectionReference | firebase.firestore.Query,
         fieldName: string,
         startingStr: string,
@@ -84,8 +78,10 @@ export class AdvicesManager {
 
         const startcode = startingStr;
         const endcode = strFrontCode + String.fromCharCode(strEndCode.charCodeAt(0) + 1);
-        return queryObj.where(fieldName, ">=", startcode).where(fieldName, "<", endcode)
-        .orderBy(fieldName, "desc");
+        return queryObj
+            .where(fieldName, ">=", startcode)
+            .where(fieldName, "<", endcode)
+            .orderBy(fieldName, "desc");
     }
 }
 
