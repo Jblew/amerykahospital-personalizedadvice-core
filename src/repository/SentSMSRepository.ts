@@ -18,7 +18,7 @@ export class SentSMSRepository {
         PendingSentSMS.validate(sentSMS);
         const recordToAdd = {
             id: uuid(),
-            timestamp: firebase.firestore.Timestamp.now().seconds,
+            timestamp: Math.floor(Date.now() / 1000),
             ...sentSMS,
         };
         await this.getDoc(recordToAdd.id).set(recordToAdd);
