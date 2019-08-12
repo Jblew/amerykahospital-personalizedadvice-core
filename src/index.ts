@@ -7,5 +7,6 @@ export { PendingAdvice } from "./model/PendingAdvice";
 export { SentSMS } from "./model/SentSMS";
 export { PendingSentSMS } from "./model/PendingSentSMS";
 export { AdviceRepository } from "./repository/AdviceRepository";
+export { SentSMSRepository } from "./repository/SentSMSRepository";
 export { default as RolesConfig } from "./roles/roles.config";
 export { RoleKey } from "./roles/RoleKey";
