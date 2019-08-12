@@ -1,5 +1,3 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
 import uuid from "uuid/v4";
 
 import { FirestoreCollections } from "../config/FirestoreCollections";
