@@ -28,6 +28,7 @@ export namespace FirebaseFunctionDefinitions {
         export interface Result {
             message: string;
             smsResult: string;
+            sentSMSId: string;
         }
 
         export const NAME = "send_sms";
