@@ -5,7 +5,7 @@ import { FirestoreCollections } from "../config/FirestoreCollections";
 import { Advice } from "../model/Advice";
 import { FirestoreEquivalent } from "../types/FirestoreEquivalent";
 
-export class AdviceManager {
+export class AdviceRepository {
     private firestore: FirestoreEquivalent;
 
     public constructor(firestore: FirestoreEquivalent) {
@@ -29,7 +29,7 @@ export class AdviceManager {
         return (await this.getAdviceDoc(id).get()).exists;
     }
 
-    public async fetchAdvices(filter: AdviceManager.FetchFilter): Promise<Advice[]> {
+    public async fetchAdvices(filter: AdviceRepository.FetchFilter): Promise<Advice[]> {
         let query: firebase.firestore.Query = firebase
             .firestore()
             .collection(FirestoreCollections.ADVICES_COLLECTION_KEY);
@@ -85,7 +85,7 @@ export class AdviceManager {
     }
 }
 
-export namespace AdviceManager {
+export namespace AdviceRepository {
     export interface FetchFilter {
         medicalprofessionalName?: string;
         patientName?: string;
