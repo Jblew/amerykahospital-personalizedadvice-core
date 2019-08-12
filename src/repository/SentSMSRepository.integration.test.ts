@@ -15,7 +15,7 @@ describe("SentSMSRepository", function() {
 
     function getSampleSentSMS(): PendingSentSMS {
         return {
-            phoneNumber: Math.floor(Math.random() * 10 ** 9) + "",
+            phoneNumber: (Math.floor(Math.random() * 10 ** 9) + "").padStart(9, "0"),
             message: `msg-${uuid()}`,
             result: `result-${uuid()}`,
         };
